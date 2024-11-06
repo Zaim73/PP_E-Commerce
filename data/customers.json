@@ -1,0 +1,19 @@
+[{
+ "id": 1,
+ "name": "Ahmad Pratama",
+ "gender": "Male",
+ "email": "Akun1@dell.com",
+ "password": "Akun1"
+}, {
+ "id": 2,
+ "name": "Berliana DwiPutri",
+ "gender": "Female",
+ "email": "Akun2@dell.com",
+ "password": "Akun2"
+}, {
+ "id": 3,
+ "name": "Cantika Triandiny",
+ "gender": "Female",
+ "email": "Akun3@dell.com",
+ "password": "Akun3"
+}]

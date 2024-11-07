@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Product.belongsToMany(models.User, {
         through: models.Order,
-        foreignKey: 'productId',
-        otherKey: 'userId'
+        foreignKey: 'ProductId',
+        otherKey: 'CustomerId'
       });
       Product.belongsTo(models.Category)
     }
@@ -54,10 +54,10 @@ module.exports = (sequelize, DataTypes) => {
       notEmpty: {
         msg: 'Stock cannot be empty!'
       },
-      len: {
-        args: [5, 500],
-        msg: 'Description must be between 5 and 500 characters'
-    }
+    //   len: {
+    //     args: [5, 500],
+    //     msg: 'Stock must be between 5 and 500 characters'
+    // }
      },
     }, 
     description: {

@@ -9,15 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      CustomerId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: 'Customers'
-          },
-          key: 'id'
-        }
-      },
       dateOfBirth: {
         type: Sequelize.DATE
       },

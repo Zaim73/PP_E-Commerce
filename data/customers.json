@@ -16,4 +16,10 @@
  "gender": "Female",
  "email": "Akun3@dell.com",
  "password": "Akun3"
+}, {
+ "id": 4,
+ "name": "Mamang",
+ "gender": "Male",
+ "email": "Akun4@dell.com",
+ "password": "Akun4"
 }]

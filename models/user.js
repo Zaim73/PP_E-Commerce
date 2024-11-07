@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     CustomerId: DataTypes.INTEGER,
     dateOfBirth: DataTypes.DATE,
-    phoneNumber: DataTypes.INTEGER
+    phoneNumber: DataTypes.BIGINT
   }, {
     sequelize,
     modelName: 'User',

@@ -1,3 +1,4 @@
+const { planning } = require('../controllers/ctrlLogin');
 const { products, addProducts, postProducts, buy, update, postUpdate, deleteProduct } = require('../controllers/ctrlProducts');
 
 const router = require('express').Router();
@@ -9,5 +10,6 @@ router.post('/products/:id/buy', buy);
 router.get('/products/:id/update', update);
 router.post('/products/:id/update', postUpdate);
 router.get('/products/:id/delete', deleteProduct);
+router.get('/rought', planning)
 
 module.exports = router;

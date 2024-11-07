@@ -1,6 +1,15 @@
 const { User, Customer } = require("../models");
 const bcrypt = require("bcryptjs");
 
+exports.planning = async (req, res) => {
+  try {
+    res.render("homePage");
+  } catch (error) {
+    console.log("🚀 ~ exports.home= ~ error:", error);
+    res.send(error.message);
+  }
+};
+
 exports.home = async (req, res) => {
   try {
     res.render("home");

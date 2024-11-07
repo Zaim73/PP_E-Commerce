@@ -27,7 +27,7 @@ let data = ''
      order: [["price", "ASC"]],
   });
    } 
-  res.render('products', {data, formatCurrency, msg: ''})
+  res.render('product', {data, formatCurrency, msg: ''})
  } catch (error) {
   console.log("🚀 ~ exports.products= ~ error:", error)
   res.send(error.message)

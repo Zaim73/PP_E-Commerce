@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: pink;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: pink;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            font-size: 16px;
+            background-color: #f5f6f8;
+            box-sizing: border-box;
+        }
+
+        .filter-button {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: pink;
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .category-item {
+            background: #f5f6f8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+            color: #333;
+        }
+
+        .category-item.active {
+            background: pink;
+            color: white;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 70px;
+        }
+
+        .product-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            background-color: #f5f6f8;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-title {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+
+        .product-price {
+            color: palevioletred;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        .rating {
+            color: #ffc107;
+            font-size: 14px;
+        }
+
+        .buy-button {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 12px 0;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .nav-item.active {
+            color: #ff4757;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="location">
+                <i class="fas fa-store"></i>
+                <span>TokPan</span>
+            </div>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">3</span>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search products">
+            <button class="filter-button">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories">
+            <div class="category-item active">All</div>
+            <div class="category-item">Electronics</div>
+            <div class="category-item">Fashion</div>
+            <div class="category-item">Home</div>
+            <div class="category-item">Sports</div>
+            <div class="category-item">Books</div>
+        </div>
+
+        <!-- Products -->
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="/api/placeholder/200/150" alt="Product" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Wireless Earbuds</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(4.0)</span>
+                    </div>
+                    <div class="product-price">$89.99</div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/200/150" alt="Product" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Smart Watch</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(4.5)</span>
+                    </div>
+                    <div class="product-price">$199.99</div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/200/150" alt="Product" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Running Shoes</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <div class="product-price">$129.99</div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/200/150" alt="Product" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Backpack</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(4.0)</span>
+                    </div>
+                    <div class="product-price">$49.99</div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-heart"></i>
+                <span>Wishlist</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Orders</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

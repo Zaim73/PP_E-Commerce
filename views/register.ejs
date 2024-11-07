@@ -257,16 +257,21 @@
       font-size: 14px;
     }
   }
+  /* name, gender, email, password */
     </style>
   </head>
   <body>
     <div class="container">
-      <form action="/login" method="post">
+      <form action="/register" method="post">
         <label for="username">Username:</label>
         <input name="name" type="text" id="username" placeholder="Username here..." />
+        <label for="gender">Gender:</label>
+        <input name="gender" type="text" id="gender" placeholder="Gender here..." />
+        <label for="email">Email:</label>
+        <input name="email" type="text" id="email" placeholder="Email here..." />
         <label for="password">Password:</label>
         <input name="password" type="password" id="password" placeholder="Password here..." />
-       <button type="submit">Login</button>
+       <button type="submit">Register</button>
       </form>
       <div class="ear-l"></div>
       <div class="ear-r"></div>

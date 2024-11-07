@@ -3,24 +3,31 @@ const {Op} = require('sequelize');
 const formatCurrency = require('../helpers/formatCurrency');
 
 exports.products = async (req, res) => {
- let {search} = req.query;
+  let {search} = req.query;
+  // let searchName = {};
  try {
-  if (!search) {
-   search = '';
-  }
-  const data = await Product.findAll({
-   include: {
-       model: Category,  
-       required: false  
-   },
-   order: [["price", "ASC"]],
-   where: {
-       name: {
-           [Op.iLike]: `%${search}%` 
-       }
-   }
-});
-  res.render({data, formatCurrency, msg: ''})
+let data = ''
+  if (search) {
+    data = await Product.findAll({
+      include: {
+        model: Category,  
+        required: false  
+    },
+    where: {
+      name: {[Op.iLike]: `%${search}%`}
+    },
+    order: [["price", "ASC"]],
+ });
+  } else {
+     data = await Product.findAll({
+     include: {
+         model: Category,  
+         required: false  
+     },
+     order: [["price", "ASC"]],
+  });
+   } 
+  res.render('products', {data, formatCurrency, msg: ''})
  } catch (error) {
   console.log("🚀 ~ exports.products= ~ error:", error)
   res.send(error.message)
@@ -40,7 +47,7 @@ exports.addProducts = async (req, res) => {
 exports.postProducts = async (req, res) => {
  try {
   const {name, price, stock, description, imgUrl, CategoryId} = req.body;
-  if (!name || !price || !stock || !description || !imgUrl) {
+  if (!name || !price || !stock || !description || !imgUrl || !CategoryId) {
    return res.send({ msg: 'Field cannot be empty!' });
    }
   await Product.create({name, price, stock, description, imgUrl, CategoryId})
@@ -78,7 +85,7 @@ exports.update = async (req, res) => {
    if (!data) {
     return res.send({ msg: 'product is not found!' });
 }
-  res.render({data})  
+  res.render('update', {data})  
  } catch (error) {
   console.log("🚀 ~ exports.update= ~ error:", error)
   res.send(error.message)
@@ -86,20 +93,21 @@ exports.update = async (req, res) => {
 }
 
 exports.postUpdate = async (req, res) => {
- try {
-  const {ProductId} = req.params;
+  const {id} = req.params;
   const {name, price, stock, description, imgUrl, CategoryId} = req.body;
+  
+ try {
   if (!name && !price && !stock && !description && !imgUrl && !CategoryId) {
    return res.send({ msg: 'Please fiil the field!' });
 }
-  await Product.findByPk(ProductId)
+  const data = await Product.findByPk(id)
   if (!data) {
    return res.send({ msg: 'product is not found!' });
 }
-  await Product.update({name, price, stock, description, imgUrl, CategoryId})
+const data2 = await Product.findByPk(id)
+  await data2.update({name, price, stock, description, imgUrl, CategoryId})
   res.redirect('/products');
- const data = await Product.findByPk(id)
- res.render({data})  
+//  res.render('/products', {data})  
  } catch (error) {
   console.log("🚀 ~ exports.update= ~ error:", error)
   res.send(error.message)
@@ -109,7 +117,7 @@ exports.postUpdate = async (req, res) => {
 exports.deleteProduct = async (req, res) => {
  try {
   const {id} = req.params;
-  await Product.findByPk(id)
+  const data = await Product.findByPk(id)
   if (!data) {
    return res.send({ msg: 'Product is not found' });
 }
@@ -120,6 +128,5 @@ exports.deleteProduct = async (req, res) => {
  } catch (error) {
   console.log("🚀 ~ exports.delete ~ error:", error)
   res.send(error.message)
-  
  }
 }

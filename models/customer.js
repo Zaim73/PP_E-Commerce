@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'CustomerId',
         otherKey: 'ProductId'
       })
-      Customer.belongsTo(models.User)
+      Customer.hasOne(models.User)
     }
   }
   Customer.init({

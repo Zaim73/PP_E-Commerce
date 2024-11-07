@@ -1,10 +1,13 @@
 'use strict';
 
+const { hashSync } = require('bcryptjs');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
       let data = require("../data/customers.json").map((e) => {
         delete e.id;
+        e.password = hashSync(e.password, 10);
         e.createdAt = e.updatedAt = new Date();
         return e;
       });

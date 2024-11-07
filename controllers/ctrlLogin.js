@@ -12,7 +12,7 @@ exports.home = async (req, res) => {
 
 exports.login = async (req, res) => {
  try {
- res.render('login') 
+ res.render('home') 
  } catch (error) {
   console.log("🚀 ~ exports.login= ~ error:", error)
   res.send(error.message)

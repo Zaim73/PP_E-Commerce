@@ -59,17 +59,21 @@ exports.postProducts = async (req, res) => {
 }
 
 exports.buy = async (req, res) => {
- try {
-  const {ProductId} = req.params;
-  const {name, price, stock, description, imgUrl, CategoryId} = req.body;
-  if (!name && !price && !stock && !description && !imgUrl && !CategoryId) {
-   return res.send({ msg: 'Please fiil the field!' });
-}
-  await Product.findByPk(ProductId)
-  if (!data) {
-   return res.send({ msg: 'products not found!' });
-}
-  await Product.update({name, price, stock, description, imgUrl, CategoryId})
+  try {
+    const { id } = req.params;
+    const product = await Product.findByPk(id);
+
+    if (!product) {
+      return res.send({ msg: 'Product not found!' });
+    }
+
+    if (product.stock < 1) {
+      return res.send({ msg: 'Out of stock!' });
+    }
+
+    const updatedStock = product.stock - 1;
+    await product.update({ stock: updatedStock });
+  // console.log('berhasil horeeyy');
   res.redirect('/products')
  } catch (error) {
   console.log("🚀 ~ exports.buy= ~ error:", error)

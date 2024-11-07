@@ -1,7 +1,6 @@
 const {Product, Category} = require('../models');
 const {Op} = require('sequelize');
 const formatCurrency = require('../helpers/formatCurrency');
-const bcrypt = require('bcryptjs')
 
 exports.products = async (req, res) => {
  let {search} = req.query;

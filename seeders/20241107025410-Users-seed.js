@@ -22,7 +22,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("Users", data, {});
+    await queryInterface.bulkDelete("Users", null, {});
     /**
      * Add commands to revert seed here.
      *

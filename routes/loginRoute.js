@@ -10,7 +10,7 @@ router.post('/register', registPage);
 router.get('/logout', logOut);
 
 router.use(function (req, res, next) {
- if (!req.session.userId) {
+ if (!req.session.CustomerId) {
      const error = `Please login first!`
      return res.redirect(`/login?srror=${error}`);
  }else {

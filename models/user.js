@@ -10,11 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically
      */
     static associate(models) {
-      User.belongsTo(models.Customer)
+      User.hasOne(models.Customer)
     }
   }
   User.init({
-    CustomerId: DataTypes.INTEGER,
     dateOfBirth: DataTypes.DATE,
     phoneNumber: DataTypes.BIGINT
   }, {

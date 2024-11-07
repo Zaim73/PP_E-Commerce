@@ -12,7 +12,7 @@ exports.home = async (req, res) => {
 
 exports.login = async (req, res) => {
  try {
- res.render('login') 
+ res.render('home') 
  } catch (error) {
   console.log("🚀 ~ exports.login= ~ error:", error)
   res.send(error.message)
@@ -43,7 +43,7 @@ const validatePassword =  await bcrypt.compare(password, user.password);
 
 exports.register = async (req, res) => {
  try {
- res.render('/register')  
+ res.render('register')  
  } catch (error) {
   console.log("🚀 ~ exports.register= ~ error:", error)
   res.send(error.message)
